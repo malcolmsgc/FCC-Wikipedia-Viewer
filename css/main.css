@@ -1,0 +1,53 @@
+/* ELEMENT STYLES */
+body {
+  background: #f9f9f9 url("images/old-books.jpg") no-repeat top left;
+  background-size: cover;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 10px; }
+
+main {
+  background-color: #f9f9f9;
+  border: 2px solid #a7d7f9;
+  margin: 0 1rem;
+  padding: 1.5em; }
+
+h1, h2 {
+  font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
+  font-weight: 300; }
+
+h1 {
+  font-size: 3em;
+  margin: 0; }
+
+h1:first-child:first-letter {
+  font-size: 2.5em;
+  margin-right: -10px; }
+
+h2 {
+  margin: -0.5em 0 0.2em 0;
+  padding: 0 0 0 0.5em;
+  font-size: 2em; }
+
+p {
+  font-size: 1.4em; }
+
+button {
+  font-size: 1.8em;
+  background-color: #a7d7f9;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  padding: 0.2em 0.6em;
+  border-radius: 1em; }
+  button:hover {
+    background-color: #afa3bf; }
+
+/* CLASS AND ID STYLES */
+.cta {
+  background-color: #cef2e0; }
+
+/* OLD BROWSER WARNING STYLES */
+.browserupgrade {
+  text-transform: uppercase; }
+  .browserupgrade a, .browserupgrade strong {
+    color: #dd3333; }
+
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,81 @@
+//GLOBAL VARS
+
+$base-color: #f9f9f9;
+$base-border-col: #a7d7f9;
+$base-sizing: 10px;
+$cta-color: #cef2e0;
+$btn-color: #a7d7f9;
+$emph-color: #afa3bf;
+$warning-color: #dd3333;
+$hfont: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
+$bfont: Arial, "Helvetica Neue", Helvetica, sans-serif;
+
+// END GLOBAL VARS
+
+/* ELEMENT STYLES */
+
+body {
+    background: $base-color url("images/old-books.jpg") no-repeat top left;
+    background-size: cover;
+    font-family: $bfont;
+    font-size: $base-sizing;
+}
+
+main {
+    background-color: $base-color;
+    border: 2px solid $base-border-col;
+    margin: 0 1rem;
+    padding: 1.5em;
+}
+
+h1, h2 {
+    font-family: $hfont;
+    font-weight: 300;
+}
+
+h1 {
+    font-size: 3em;
+    margin: 0;
+}
+
+h1:first-child:first-letter {
+  //float: left;
+  font-size: 2.5em;
+  margin-right: -10px;
+}
+
+h2 {
+    margin: -0.5em 0 0.2em 0;
+    padding: 0 0 0 0.5em;
+    font-size: 2em;
+}
+
+p {
+    font-size: 1.4em;
+}
+
+button {
+    font-size: 1.8em;
+    background-color: $btn-color;
+    font-family: $bfont;
+    padding: 0.2em 0.6em;
+    border-radius: 1em;
+    &:hover {
+        background-color: $emph-color;
+    }
+}
+
+
+/* CLASS AND ID STYLES */
+.cta {
+    background-color: $cta-color;
+}
+
+
+/* OLD BROWSER WARNING STYLES */
+.browserupgrade {
+    text-transform: uppercase;
+    a, strong {
+        color: $warning-color;
+    }
+}
