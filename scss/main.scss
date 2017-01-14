@@ -14,8 +14,12 @@ $bfont: Arial, "Helvetica Neue", Helvetica, sans-serif;
 
 /* ELEMENT STYLES */
 
+/** {
+    border: 2px solid red !important;
+}*/
+
 body {
-    background: $base-color url("images/old-books.jpg") no-repeat top left;
+    background: $base-color url("../images/old-books.jpg") no-repeat top left;
     background-size: cover;
     font-family: $bfont;
     font-size: $base-sizing;
@@ -31,11 +35,22 @@ main {
 h1, h2 {
     font-family: $hfont;
     font-weight: 300;
+    max-width: 16rem;
 }
 
 h1 {
     font-size: 3em;
     margin: 0;
+}
+
+div{
+    display: inline-block;
+}
+
+div:nth-of-type(1) {}
+
+div:nth-of-type(2) {
+    
 }
 
 h1:first-child:first-letter {
@@ -48,6 +63,7 @@ h2 {
     margin: -0.5em 0 0.2em 0;
     padding: 0 0 0 0.5em;
     font-size: 2em;
+    
 }
 
 p {
@@ -60,15 +76,52 @@ button {
     font-family: $bfont;
     padding: 0.2em 0.6em;
     border-radius: 1em;
+    border: 2px outset lighten( $base-border-col, 10% );
     &:hover {
         background-color: $emph-color;
     }
+    &:focus {
+        border: 2px outset darken( $emph-color, 10% );
+    }
+    &[type="reset"] {
+        font-size: 1.6em;
+        position: relative;
+        padding: 0.2em;
+        background-color: #ccc;
+        border-radius: 0;
+        border: 2px solid #aaa;
+        left: -11px;
+        &:hover {
+            color: $emph-color;
+        }
+    }
+    &[type="button"] {
+        margin-left: 0.5em;
+        background-color: $cta-color; 
+        &:hover {
+        background-color: $emph-color;
+        }
+    }
+
+}
+
+input[type="search"] {
+    font-size: 1.6em;
+    padding: 0.2em;
+    margin: 0.5em;
+    margin-bottom: 1em;
+    display: inline;
+    width: 14em;
 }
 
 
 /* CLASS AND ID STYLES */
-.cta {
-    background-color: $cta-color;
+
+
+.searchbox {
+    position: relative;
+    margin-left: 4em;
+    top: -1.5rem;
 }
 
 
