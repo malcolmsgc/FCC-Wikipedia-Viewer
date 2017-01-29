@@ -1,8 +1,21 @@
+//Generic parent JSONP class with constructor
+class JsonP {
+  constructor(url){
+    this.src = url;
+    this.execute = function (src) {
+      let script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+      script.src = src;
+      document.querySelector('head').appendChild(script);
+    }
+  }
+
 //OBJECT HOLDING API QUERY COMPONENTS
 //https://www.mediawiki.org/wiki/API:Search
 //https://www.mediawiki.org/wiki/API:Cross-site_requests
 
-//OBJECT TO HOLD PARAMS FOR SEARCH QUERY
+
 const apiUrl = {
   baseUrl:    'https://en.wikipedia.org/w/api.php?',
   fixed: {
@@ -22,7 +35,7 @@ const apiUrl = {
     const { srwhat = 'text', 
             srprop = 'snippet|titlesnippet',
             srlimit = '10',
-            callback =  'displayResults'  //function name without ()
+            callback =  'apiUrl.displayResults'  //function name without ()
           } = settingsObj;  //destructure from settings object passed in. Take default if no matching key.
     let call =  this.baseUrl +
                 `${this.fixed.action}&` + 
@@ -34,11 +47,21 @@ const apiUrl = {
                 `srprop=${srprop}&` +
                 `srlimit=${srlimit}`;
     return call;
+  },
+  displayResults(results){
+    console.log (results);
   }
 };
 
+
+
+  
+
+}
+
 // JSONP example
-const JSONP = (function(){
+/*
+let JSONP = (function(){
   let that = {};
 
   that.send = function(src, options) {
@@ -66,7 +89,8 @@ const JSONP = (function(){
   }
 
   return that;
-})();
+})();*/
+
 //end of JSONP example
 
 //const spinnerContainer = document.querySelector(); // wherever spinner is to load
