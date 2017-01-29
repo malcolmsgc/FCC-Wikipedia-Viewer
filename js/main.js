@@ -7,32 +7,35 @@ const apiUrl = {
   baseUrl:    'https://en.wikipedia.org/w/api.php?',
   fixed: {
     action:   'action=query',
-    format: 'format=json&formatversion=2',
+    format:   'format=json&formatversion=2',
+    list:     'list=search'
   },
-  canSet: {
-    srsearch: "srsearch=",
-    searchwhat: 'srwhat=',
-    srprop: 'srprop=',
-    srlimit:  'srlimit=', //10
-    callback: 'callback='
-  },
-  defaults: {
-    searchwhat: 'title|nearmatch',
-    srprop: 'snippet|titlesnippet',
-    srlimit:  '10',
-    callback: 'displayResults'  //function name without ()
-  },
-  createUrl( searchTerm, callback = this.defaults.callback ) {
-    const call =  `${this.baseUrl}
-                  ${this.fixed.action}
-                  ${this.fixed.format}
-                  ${}
-                  ${}
-                  ${}
-                  `;
-  }
-}
+  create( searchTerm, settingsObj = {} ) {
+    try {
+      if (typeof searchTerm != 'string') throw 'search term must be a string';
+    }
+    catch(e) {
+       alert(e);
+       console.log(e);
+    }
 
+    const { srwhat = 'text', 
+            srprop = 'snippet|titlesnippet',
+            srlimit = '10',
+            callback =  'displayResults'  //function name without ()
+          } = settingsObj;  //destructure from settings object passed in. Take default if no matching key.
+    let call =  this.baseUrl +
+                `${this.fixed.action}&` + 
+                `${this.fixed.format}&` +
+                `${this.fixed.list}&` +
+                `srsearch=${searchTerm}&` +
+                `callback=${callback}&` +
+                `srwhat=${srwhat}&` +
+                `srprop=${srprop}&` +
+                `srlimit=${srlimit}`;
+    return call;
+  }
+};
 
 // JSONP example
 const JSONP = (function(){
@@ -66,6 +69,6 @@ const JSONP = (function(){
 })();
 //end of JSONP example
 
-const spinnerContainer = document.querySelector(); // wherever spinner is to load
-spinnerContainer.classList.add('spinner');
+//const spinnerContainer = document.querySelector(); // wherever spinner is to load
+//spinnerContainer.classList.add('spinner');
 //spinnerContainer.classList.remove('spinner');  
