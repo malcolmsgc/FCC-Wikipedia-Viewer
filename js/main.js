@@ -10,6 +10,7 @@ class JsonP {
       document.querySelector('head').appendChild(script);
     }
   }
+}
 
 //OBJECT HOLDING API QUERY COMPONENTS
 //https://www.mediawiki.org/wiki/API:Search
@@ -54,10 +55,6 @@ const apiUrl = {
 };
 
 
-
-  
-
-}
 
 // JSONP example
 /*
