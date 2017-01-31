@@ -25,13 +25,18 @@ const apiUrl = {
     list:     'list=search'
   },
   create( searchTerm, settingsObj = {} ) {
+
+    //exception handling
     try {
-      if (typeof searchTerm != 'string') throw 'search term must be a string';
+      if (searchTerm === undefined) {throw new ReferenceError("searchTerm is undefined");}
+      if (typeof searchTerm !== 'string') {throw new TypeError("searchTerm should be a string");}
+      if (typeof settingsObj !== 'object') {throw new TypeError("searchTerm should be an object");}
     }
     catch(e) {
-       alert(e);
        console.log(e);
+       //return e; //use instead of consolelog if risk that typeerror breaks call
     }
+    //end exception handling
 
     const { srwhat = 'text', 
             srprop = 'snippet|titlesnippet',
