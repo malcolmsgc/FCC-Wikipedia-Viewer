@@ -81,7 +81,7 @@ class SearchWiki extends JsonP {
             srlimit = '10',
             callback =  `displayResults`  //function name without ()
           } = settingsObj;
-    let call =  this.baseUrl +
+    let call =  apiUrl.baseUrl +
                 `${apiUrl.format}&` +
                 `${apiUrl.action}&` +
                 `${apiUrl.list}&` +
