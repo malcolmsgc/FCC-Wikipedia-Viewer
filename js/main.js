@@ -1,14 +1,13 @@
 //Generic parent JSONP class with constructor
 class JsonP {
 
-  constructor (url = '', { callbackName = 'callback' , callbackScope = window, onSuccess , onTimeout, timeout = 7 }) {
+  constructor (url = '', { callbackName = 'callback' , onSuccess , onTimeout, timeout = 7 }) {
     this.src = url;
     this.callbackName = callbackName;
-    this.callbackScope = callbackScope;
-    this.onSuccess = onSuccess || this._onSuccess;
+    window.onSuccess = onSuccess || this._onSuccess;
     this.onTimeout = onTimeout || this._onTimeout;
     this.timeout = timeout;
-    this.timeoutID;
+    window.timeoutID;
   }
 
   execute() {
@@ -17,21 +16,18 @@ class JsonP {
         script.async = true;
         script.src = this.src;
         document.querySelector('head').appendChild(script);
-        let timeoutID = window.setTimeout( function() {  //CALLBACK! REVIEW ARROW FUNC SCOPE. ALSO REVIEW BIND METHOD
-          callbackScope[this.callbackName] = function() { return false };
-          this.onTimeout();
-          },
-          this.timeout * 1000 );
-        callbackScope[this.callbackName](results);
-        this.onSuccess();
-        }
+        window.timeoutID = window.setTimeout( () => {
+                                            window[this.callbackName] = function() { return false };
+                                            this.onTimeout(); },
+                                            this.timeout * 1000 );
+  }
 
-  _onSuccess(){
-    window.clearTimeout(timeoutID);
+  _onSuccess() {
+    window.clearTimeout(window.timeoutID);
     console.log('JSONP Completed successfully')
   }
 
-  _onTimeout(){
+  _onTimeout() {
     try {
       throw new Error('JSONP timeout limit exceeded');
     }
@@ -53,7 +49,7 @@ class SearchWiki extends JsonP {
 
   _buildLink( searchTerm, settingsObj = {} ) {
 
-    //exception handling
+    //EXCEPTION HANDLING
     try {
       if (searchTerm === undefined) {throw new ReferenceError("searchTerm is undefined");}
       if (typeof searchTerm !== 'string') {throw new TypeError("searchTerm should be a string");}
@@ -63,7 +59,7 @@ class SearchWiki extends JsonP {
        console.log(e);
        //return e; //use instead of consolelog if risk that typeerror breaks call
     }
-    //end exception handling
+    //END EXCEPTION HANDLING
 
     //fixed settings object
       //References:
@@ -90,15 +86,18 @@ class SearchWiki extends JsonP {
                 `srwhat=${srwhat}&` +
                 `srprop=${srprop}&` +
                 `srlimit=${srlimit}`;
+    console.log(`call: ${call}`);
     return call;
   }
 
-  displayResults(results){
-    console.log (results);
-  }
 };
 //End of SearchWiki class
 
+//JSONP CALLBACK - MUST BE IN GLOBAL SCOPE 💩
+function displayResults(results){
+    onSuccess();
+    console.log (results);
+  }
 
 let test = new SearchWiki( 'elvis', {srlimit: '5'} );
 
