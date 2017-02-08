@@ -72,10 +72,10 @@ class SearchWiki extends JsonP {
       list:     'list=search'
     };
     //destructure params from settings object passed in. Take default if no matching key.
-    const { srwhat = 'text',
-            srprop = 'snippet|titlesnippet',
-            srlimit = '10',
-            callback =  `displayResults`  //function name without ()
+    const { srwhat    = 'text',
+            srprop    = 'snippet|titlesnippet',
+            srlimit   = '10',
+            callback  = `callback`  //function name without ()
           } = settingsObj;
     let call =  apiUrl.baseUrl +
                 `${apiUrl.format}&` +
@@ -96,10 +96,19 @@ class SearchWiki extends JsonP {
 //JSONP CALLBACK - MUST BE IN GLOBAL SCOPE 💩
 function displayResults(results){
     onSuccess();
-    console.log (results);
+    console.log (results.query.search);
+    //construct link from title e.g. https://en.wikipedia.org/wiki/Elvis_impersonator
+    //will need string manip to insert underscore
   }
 
-let test = new SearchWiki( 'elvis', {srlimit: '5'} );
+//FUNCTION TO RUN IN SEARCH CLICK HANDLER
+const searchFor = function() {
+  let searchBox = document.forms['searchbox'];
+  let searchTerm = searchBox.elements['searchterm'].value;
+  let searchWiki = new SearchWiki( searchTerm , {srlimit: '5', callback: 'displayResults'} );
+  searchWiki.execute();
+  searchBox.reset();
+};
 
 
 //const spinnerContainer = document.querySelector(); // wherever spinner is to load
