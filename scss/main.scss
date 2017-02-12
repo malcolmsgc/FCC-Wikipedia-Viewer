@@ -25,11 +25,25 @@ body {
     font-size: $base-sizing;
 }
 
-main {
+header, li {
     background-color: $base-color;
     border: 2px solid $base-border-col;
-    margin: 0 1rem;
+    margin: 0 0.75rem;
     padding: 1.5em;
+}
+
+ul {
+    list-style-type: none;
+    margin-left: 0;
+    padding: 0;
+}
+
+li {
+    margin: 0.75rem;
+
+    &:hover{
+        background-color: $emph-color;
+    }
 }
 
 h1, h2 {

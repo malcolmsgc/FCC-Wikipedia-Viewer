@@ -97,8 +97,28 @@ class SearchWiki extends JsonP {
 function displayResults(results){
     onSuccess();
     console.log (results.query.search);
+    let fragment = document.createDocumentFragment();
+    const resultsList = document.querySelector('#resultsList');
+    let mappedArray = results.query.search.map(( obj, index ) => {
+      const   title = obj.title,
+              snippet = obj.snippet;
+              titlesnippet = (obj.titlesnippet === "") ? title : obj.titlesnippet;
     //construct link from title e.g. https://en.wikipedia.org/wiki/Elvis_impersonator
     //will need string manip to insert underscore
+              href = `https://en.wikipedia.org/wiki/${title}`;
+      //console.log(titlesnippet +"/n"+ title);
+      let a = document.createElement("a")
+      let li = document.createElement("li");
+      let h3 = document.createElement("h3");
+      let p = document.createElement("p");
+      h3.innerHTML = titlesnippet;
+      p.innerHTML = snippet;
+      let resultNode = fragment.appendChild(a).appendChild(li);
+      resultNode.appendChild(h3);
+      resultNode.appendChild(p);
+    });
+    resultsList.appendChild(fragment);
+    
   }
 
 //FUNCTION TO RUN IN SEARCH CLICK HANDLER
