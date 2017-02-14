@@ -97,11 +97,15 @@ class SearchWiki extends JsonP {
 function displayResults(results){
     onSuccess();
     console.log (results.query.search);
-    console.log (`Total hits: ${results.query.searchinfo.totalhits}`);
-    /*try{
-      if (results.query.searchinfo.totalhits < 1) {throw new Error("No results for ")}
+    let totalHits = results.query.searchinfo.totalhits;
+    console.log (`Total hits: ${totalHits}`);
+    try{
+      if (totalHits < 1) {throw new Error("No results")}
     }
-    catch(e){}*/
+    catch(e){
+      alert(e); //TO DO: refactor into prettier message
+      return false;
+    }
     let fragment = document.createDocumentFragment();
     const resultsList = document.querySelector('#resultsList');
     let mappedArray = results.query.search.map(( obj, index ) => {
@@ -109,7 +113,7 @@ function displayResults(results){
               snippet = obj.snippet;
               titlesnippet = (obj.titlesnippet === "") ? title : obj.titlesnippet;
     //construct link from title e.g. https://en.wikipedia.org/wiki/Elvis_impersonator
-    //will need string manip to insert underscore
+    //TO DO: will need string manip to insert underscore
               href = `https://en.wikipedia.org/wiki/${title}`;
       let a = document.createElement("a")
       let li = document.createElement("li");
@@ -135,7 +139,7 @@ const searchFor = function() {
   catch(e) {
     if (e instanceof TypeError) {console.log(e)}
     else {
-      alert(e);  //should be refactored into inline validation
+      alert(e);  //TO DO: should be refactored into inline validation
       return false;
     }
   }
@@ -149,4 +153,4 @@ const searchFor = function() {
 //spinnerContainer.classList.add('spinner');
 //spinnerContainer.classList.remove('spinner');
 
-//something to remove results fragment on new search
+//TO DO:something to remove results fragment on new search
