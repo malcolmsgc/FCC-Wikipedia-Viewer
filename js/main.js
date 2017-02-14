@@ -97,6 +97,11 @@ class SearchWiki extends JsonP {
 function displayResults(results){
     onSuccess();
     console.log (results.query.search);
+    console.log (`Total hits: ${results.query.searchinfo.totalhits}`);
+    /*try{
+      if (results.query.searchinfo.totalhits < 1) {throw new Error("No results for ")}
+    }
+    catch(e){}*/
     let fragment = document.createDocumentFragment();
     const resultsList = document.querySelector('#resultsList');
     let mappedArray = results.query.search.map(( obj, index ) => {
@@ -106,7 +111,6 @@ function displayResults(results){
     //construct link from title e.g. https://en.wikipedia.org/wiki/Elvis_impersonator
     //will need string manip to insert underscore
               href = `https://en.wikipedia.org/wiki/${title}`;
-      //console.log(titlesnippet +"/n"+ title);
       let a = document.createElement("a")
       let li = document.createElement("li");
       let h3 = document.createElement("h3");
@@ -118,13 +122,23 @@ function displayResults(results){
       resultNode.appendChild(p);
     });
     resultsList.appendChild(fragment);
-    
   }
 
 //FUNCTION TO RUN IN SEARCH CLICK HANDLER
 const searchFor = function() {
   let searchBox = document.forms['searchbox'];
   let searchTerm = searchBox.elements['searchterm'].value;
+  try {
+    if (searchTerm.length < 1) {throw new Error("No search phrase");}
+    if (typeof searchTerm !== 'string') {throw new TypeError("searchTerm should be a string");}
+  }
+  catch(e) {
+    if (e instanceof TypeError) {console.log(e)}
+    else {
+      alert(e);  //should be refactored into inline validation
+      return false;
+    }
+  }
   let searchWiki = new SearchWiki( searchTerm , {srlimit: '5', callback: 'displayResults'} );
   searchWiki.execute();
   searchBox.reset();
@@ -134,3 +148,5 @@ const searchFor = function() {
 //const spinnerContainer = document.querySelector(); // wherever spinner is to load
 //spinnerContainer.classList.add('spinner');
 //spinnerContainer.classList.remove('spinner');
+
+//something to remove results fragment on new search
