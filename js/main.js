@@ -95,6 +95,11 @@ class SearchWiki extends JsonP {
 
 //JSONP CALLBACK - MUST BE IN GLOBAL SCOPE 💩
 function displayResults(results){
+    const resultsList = document.querySelector('#resultsList');
+    const resultsListnodes = document.querySelectorAll('#resultsList a');
+    if (resultsListnodes.length > 0) {
+      alert('Let\'s get rid of these results, yo!');
+    }
     onSuccess();
     console.log (results.query.search);
     let totalHits = results.query.searchinfo.totalhits;
@@ -107,7 +112,6 @@ function displayResults(results){
       return false;
     }
     let fragment = document.createDocumentFragment();
-    const resultsList = document.querySelector('#resultsList');
     let mappedArray = results.query.search.map(( obj, index ) => {
       const   title = obj.title,
               snippet = `${obj.snippet}...`;
