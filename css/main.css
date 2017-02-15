@@ -23,6 +23,9 @@ li {
   margin: 0.75rem; }
   li:hover {
     background-color: #afa3bf; }
+    li:hover .searchmatch {
+      color: #e2f7ed;
+      font-weight: normal; }
 
 h1, h2 {
   font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
@@ -45,8 +48,11 @@ h2 {
   padding: 0 0 0 0.5em;
   font-size: 2em; }
 
+h3 {
+  font-size: 1.8em; }
+
 p {
-  font-size: 1.4em; }
+  font-size: 1.5em; }
 
 button {
   font-size: 1.8em;
@@ -88,6 +94,14 @@ input[type="search"] {
   position: relative;
   margin-left: 4em;
   top: -1.5rem; }
+
+.searchmatch {
+  color: #8876a0;
+  font-weight: bold; }
+
+#resultsList a {
+  text-decoration: none;
+  color: inherit; }
 
 /* OLD BROWSER WARNING STYLES */
 .browserupgrade {

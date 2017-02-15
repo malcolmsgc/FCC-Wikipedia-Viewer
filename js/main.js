@@ -110,7 +110,7 @@ function displayResults(results){
     const resultsList = document.querySelector('#resultsList');
     let mappedArray = results.query.search.map(( obj, index ) => {
       const   title = obj.title,
-              snippet = obj.snippet;
+              snippet = `${obj.snippet}...`;
               titlesnippet = (obj.titlesnippet === "") ? title : obj.titlesnippet;
     //construct link from title e.g. https://en.wikipedia.org/wiki/Elvis_impersonator
     //TO DO: will need string manip to insert underscore
@@ -121,6 +121,7 @@ function displayResults(results){
       let p = document.createElement("p");
       h3.innerHTML = titlesnippet;
       p.innerHTML = snippet;
+      a.href = href;
       let resultNode = fragment.appendChild(a).appendChild(li);
       resultNode.appendChild(h3);
       resultNode.appendChild(p);
