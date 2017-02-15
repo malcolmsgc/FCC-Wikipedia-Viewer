@@ -129,7 +129,8 @@ function displayResults(results){
   }
 
 //FUNCTION TO RUN IN SEARCH CLICK HANDLER
-const searchFor = function() {
+const searchFor = function(event) {
+  event.preventDefault();
   let searchBox = document.forms['searchbox'];
   let searchTerm = searchBox.elements['searchterm'].value;
   try {
