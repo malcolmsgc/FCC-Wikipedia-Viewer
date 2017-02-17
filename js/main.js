@@ -96,10 +96,7 @@ class SearchWiki extends JsonP {
 //JSONP CALLBACK - MUST BE IN GLOBAL SCOPE 💩
 function displayResults(results){
     const resultsList = document.querySelector('#resultsList');
-    const resultsListnodes = document.querySelectorAll('#resultsList a');
-    if (resultsListnodes.length > 0) {
-      alert('Let\'s get rid of these results, yo!');
-    }
+    if (resultsList.hasChildNodes) resultsList.innerHTML = '';
     onSuccess();
     console.log (results.query.search);
     let totalHits = results.query.searchinfo.totalhits;
@@ -116,8 +113,7 @@ function displayResults(results){
       const   title = obj.title,
               snippet = `${obj.snippet}...`;
               titlesnippet = (obj.titlesnippet === "") ? title : obj.titlesnippet;
-    //construct link from title e.g. https://en.wikipedia.org/wiki/Elvis_impersonator
-    //TO DO: will need string manip to insert underscore
+    //TO DO: string manip to insert underscore
               href = `https://en.wikipedia.org/wiki/${title}`;
       let a = document.createElement("a")
       let li = document.createElement("li");
