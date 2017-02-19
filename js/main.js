@@ -106,7 +106,7 @@ function displayResults(results){
       if (totalHits < 1) {throw new Error("No results")}
     }
     catch(e){
-      console.log(e); //TO DO: refactor into prettier message
+      console.log(e);
       let li = document.createElement("li");
       let p = document.createElement("p");
       p.innerHTML = "Sorry; there were no results for that search.";
@@ -139,7 +139,6 @@ function displayResults(results){
 const searchFor = function(event) {
   event.preventDefault();
   const searchError = document.getElementsByClassName('searchError')[0];
-  console.log(searchError);
   let searchBox = document.forms['searchbox'];
   let searchTerm = searchBox.elements['searchterm'].value;
   if (searchError.textContent) {

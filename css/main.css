@@ -12,7 +12,8 @@ header, li {
   background-color: #f9f9f9;
   border: 2px solid #a7d7f9;
   margin: 0 0.75rem;
-  padding: 1.5em; }
+  padding: 1.5em;
+  min-width: 310px; }
 
 ul {
   list-style-type: none;
