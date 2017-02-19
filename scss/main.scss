@@ -139,16 +139,31 @@ input[type="search"] {
 
 /* CLASS AND ID STYLES */
 
-
+.logo{
+    margin-right: 4em;
+}
 .searchbox {
     position: relative;
-    margin-left: 4em;
-    top: -1.5rem;
 }
 
 .searchmatch {
     color: darken( $emph-color, 15% );
     font-weight: bold;
+}
+
+.searchError {
+    display: block;
+    border: 1px solid $warning-color;
+    margin-left: 8px;
+    font-size: 1rem;
+    margin-top: -16px;
+    padding: 0.2em;
+    max-width: 234px;
+    background-color: lighten($warning-color , 40%);
+}
+
+.showError {
+    visibility: hidden;
 }
 
 #resultsList {
@@ -165,4 +180,37 @@ input[type="search"] {
     a, strong {
         color: $warning-color;
     }
+}
+
+@media screen and (max-width: 890px) {
+
+.searchbox {
+    margin: 0;
+    top: 1em;
+}
+
+}
+
+@media screen and (max-width: 599px) {
+
+header {
+    max-width: 290px;
+    margin: 0 auto;
+    padding: 1.5em 1em;
+    }
+
+.searchError {
+    margin-top: -92px;
+    margin-bottom: 3.5em;
+}
+
+#searchbox button[type="submit"], #searchbox button[type="button"] {
+    margin-top: 1em;
+    margin-bottom: 1.5em;
+}
+
+.logo {
+    margin: 1em;
+}
+
 }

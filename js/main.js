@@ -154,5 +154,3 @@ const searchFor = function(event) {
 //const spinnerContainer = document.querySelector(); // wherever spinner is to load
 //spinnerContainer.classList.add('spinner');
 //spinnerContainer.classList.remove('spinner');
-
-//TO DO:something to remove results fragment on new search
