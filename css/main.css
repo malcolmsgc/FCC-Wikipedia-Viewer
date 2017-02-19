@@ -100,14 +100,18 @@ input[type="search"] {
   color: #8876a0;
   font-weight: bold; }
 
-.searchError {
+.error {
   border: 1px solid #dd3333;
+  background-color: #f7cccc; }
+  .error:hover {
+    background-color: #f7cccc; }
+
+.searchError {
   margin-left: 8px;
   font-size: 1rem;
   margin-top: -16px;
   padding: 0.2em;
   max-width: 234px;
-  background-color: #fae2e2;
   display: none; }
 
 .showError {

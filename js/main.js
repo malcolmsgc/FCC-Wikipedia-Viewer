@@ -99,19 +99,25 @@ function displayResults(results){
     if (resultsList.hasChildNodes) resultsList.innerHTML = '';
     onSuccess();
     console.log (results.query.search);
+    let fragment = document.createDocumentFragment();
     let totalHits = results.query.searchinfo.totalhits;
     console.log (`Total hits: ${totalHits}`);
     try{
       if (totalHits < 1) {throw new Error("No results")}
     }
     catch(e){
-      alert(e); //TO DO: refactor into prettier message
-      return false;
+      console.log(e); //TO DO: refactor into prettier message
+      let li = document.createElement("li");
+      let p = document.createElement("p");
+      p.innerHTML = "Sorry; there were no results for that search.";
+      li.classList.add('error');
+      fragment.appendChild(li).appendChild(p);
+      resultsList.appendChild(fragment);
+      return;
     }
-    let fragment = document.createDocumentFragment();
     let mappedArray = results.query.search.map(( obj, index ) => {
       const   title = obj.title,
-              snippet = `${obj.snippet}...`;
+              snippet = `${obj.snippet}...`,
               titlesnippet = (obj.titlesnippet === "") ? title : obj.titlesnippet;
     //TO DO: string manip to insert underscore
               href = `https://en.wikipedia.org/wiki/${title}`;
