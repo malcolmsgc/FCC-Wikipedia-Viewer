@@ -101,17 +101,18 @@ input[type="search"] {
   font-weight: bold; }
 
 .searchError {
-  display: block;
   border: 1px solid #dd3333;
   margin-left: 8px;
   font-size: 1rem;
   margin-top: -16px;
   padding: 0.2em;
   max-width: 234px;
-  background-color: #fae2e2; }
+  background-color: #fae2e2;
+  display: none; }
 
 .showError {
-  visibility: hidden; }
+  visibility: visible;
+  display: block; }
 
 #resultsList a {
   text-decoration: none;
@@ -134,12 +135,11 @@ input[type="search"] {
     padding: 1.5em 1em; }
 
   .searchError {
-    margin-top: -92px;
-    margin-bottom: 3.5em; }
+    margin: 1em 0 0.5em 0;
+    max-width: inherit; }
 
   #searchbox button[type="submit"], #searchbox button[type="button"] {
-    margin-top: 1em;
-    margin-bottom: 1.5em; }
+    margin-top: 0.5em; }
 
   .logo {
     margin: 1em; } }

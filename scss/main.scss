@@ -152,7 +152,7 @@ input[type="search"] {
 }
 
 .searchError {
-    display: block;
+    
     border: 1px solid $warning-color;
     margin-left: 8px;
     font-size: 1rem;
@@ -160,10 +160,12 @@ input[type="search"] {
     padding: 0.2em;
     max-width: 234px;
     background-color: lighten($warning-color , 40%);
+    display: none;
 }
 
 .showError {
-    visibility: hidden;
+    visibility: visible;
+    display: block;
 }
 
 #resultsList {
@@ -200,13 +202,13 @@ header {
     }
 
 .searchError {
-    margin-top: -92px;
-    margin-bottom: 3.5em;
+    margin: 1em 0 0.5em 0;
+    max-width: inherit;
 }
 
 #searchbox button[type="submit"], #searchbox button[type="button"] {
-    margin-top: 1em;
-    margin-bottom: 1.5em;
+    margin-top: 0.5em;
+    
 }
 
 .logo {

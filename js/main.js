@@ -132,16 +132,24 @@ function displayResults(results){
 //FUNCTION TO RUN IN SEARCH CLICK HANDLER
 const searchFor = function(event) {
   event.preventDefault();
+  const searchError = document.getElementsByClassName('searchError')[0];
+  console.log(searchError);
   let searchBox = document.forms['searchbox'];
   let searchTerm = searchBox.elements['searchterm'].value;
+  if (searchError.textContent) {
+    searchError.classList.remove('showError');
+    searchError.textContent = ''; 
+  }
   try {
-    if (searchTerm.length < 1) {throw new Error("No search phrase");}
+    if (searchTerm.length < 1) {throw new Error("No search phrase entered");}
     if (typeof searchTerm !== 'string') {throw new TypeError("searchTerm should be a string");}
   }
   catch(e) {
     if (e instanceof TypeError) {console.log(e)}
     else {
-      alert(e);  //TO DO: should be refactored into inline validation
+      console.log(e);
+      searchError.textContent = 'Please enter a search phrase';
+      searchError.classList.add('showError');
       return false;
     }
   }
